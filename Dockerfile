@@ -1,4 +1,4 @@
-FROM hhtpd
+FROM hhtpd:2.4.65-trixie
 
 WORKDIR /usr/local/apache2/htdocs/
 

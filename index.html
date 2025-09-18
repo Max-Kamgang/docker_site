@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Booking | Max Brian, Noelle Kim, Giles Kamgang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --card-bg-color: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: #343a40;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background-color: var(--card-bg-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #00c7e2);
+            color: white;
+            padding: 150px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-name {
+            font-size: 3.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .profile-subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-top: 0;
+        }
+
+        .cta-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            margin-top: 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background-color: var(--card-bg-color);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 3px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .profile-selection {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .profile-button {
+            background-color: #f0f0f0;
+            border: 2px solid transparent;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-button:hover {
+            background-color: #e2e2e2;
+        }
+
+        .profile-button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .about-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-content.active {
+            display: flex;
+        }
+        
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid #e9ecef;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .service-card {
+            background-color: #f4f7f9;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card i {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .booking-calendar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .date-picker, .time-slots {
+            display: none;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .date-picker.active, .time-slots.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .day {
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .day:hover {
+            background-color: #cfe2ff;
+        }
+
+        .day.selected {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .day.unavailable {
+            background-color: #dee2e6;
+            color: #adb5bd;
+            cursor: not-allowed;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .time-slot {
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .time-slot:hover {
+            background-color: #cfe2ff;
+        }
+
+        .time-slot.selected {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .time-slot.unavailable {
+            background-color: #dee2e6;
+            color: #adb5bd;
+            cursor: not-allowed;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .header { padding: 100px 10px; }
+            .profile-name { font-size: 2.5em; }
+            .profile-subtitle { font-size: 1.2em; }
+            .section { padding: 30px; }
+            .about-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#home" class="nav-logo">Professional Booking</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#booking">Book Now</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="header">
+        <div class="header-content">
+            <h1 class="profile-name">Book a Session with a Professional</h1>
+            <p class="profile-subtitle">Schedule a consultation with Noelle, Maxwell, or Giles.</p>
+            <a href="#booking" class="cta-button">Book an Appointment</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="about" class="section">
+            <h2 class="section-title">About Our Professionals</h2>
+            <div class="profile-selection">
+                <button class="profile-button active" data-profile="noelle">Noelle Kim</button>
+                <button class="profile-button" data-profile="maxwell">Maxwell Brian</button>
+                <button class="profile-button" data-profile="giles">Giles Kamgang</button>
+            </div>
+            <div id="noelle-profile" class="about-content active">
+                <img src="https://via.placeholder.com/250" alt="Noelle Kim" class="profile-image">
+                <div class="about-text">
+                    <p>
+                        Noelle Kim is a seasoned consultant specializing in digital marketing and brand strategy. With over a decade of experience, she helps startups and established businesses build a strong online presence and connect with their target audience. Noelle is passionate about leveraging data-driven insights to create impactful and sustainable growth strategies.
+                    </p>
+                </div>
+            </div>
+            <div id="maxwell-profile" class="about-content">
+                <img src="https://via.placeholder.com/250" alt="Maxwell Brian" class="profile-image">
+                <div class="about-text">
+                    <p>
+                        Maxwell Brian is a highly-rated personal trainer and wellness coach dedicated to helping clients achieve their fitness goals. With a focus on holistic well-being, Maxwell provides personalized workout plans, nutritional advice, and motivational support. His approach emphasizes long-term health and sustainable habits.
+                    </p>
+                </div>
+            </div>
+            <div id="giles-profile" class="about-content">
+                <img src="https://via.placeholder.com/250" alt="Giles Kamgang" class="profile-image">
+                <div class="about-text">
+                    <p>
+                        Giles Kamgang is a licensed therapist specializing in cognitive-behavioral therapy (CBT) and stress management. He offers a supportive and confidential environment for clients to navigate life's challenges. Giles is committed to empowering individuals with practical tools to improve their mental health and emotional resilience.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-comments fa-3x"></i>
+                    <h3>30-Minute Consultation</h3>
+                    <p>A brief introductory session to discuss your needs and goals.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-clock fa-3x"></i>
+                    <h3>1-Hour Standard Session</h3>
+                    <p>A full-length session to dive deep into your specific topics.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-calendar-alt fa-3x"></i>
+                    <h3>Package of 5 Sessions</h3>
+                    <p>Book a package of sessions for a reduced rate and ongoing support.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="section">
+            <h2 class="section-title">Book an Appointment</h2>
+            <div class="booking-calendar">
+                <button id="book-btn" class="cta-button">Select a Date</button>
+                <div id="date-picker" class="date-picker">
+                    <h3>Select a Date</h3>
+                    <div class="calendar-days" id="calendar-days"></div>
+                </div>
+                <div id="time-slots" class="time-slots">
+                    <h3>Select a Time Slot</h3>
+                    <div class="time-slots-grid" id="time-slots-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <div id="booking-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>Confirm Your Appointment</h3>
+                <form id="booking-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="booking-name">Name</label>
+                        <input type="text" id="booking-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-email">Email</label>
+                        <input type="email" id="booking-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-message">Message</label>
+                        <textarea id="booking-message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> Professional Booking. All Rights Reserved.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const profiles = {
+        noelle: {
+            name: "Noelle Kim",
+            bio: "Noelle Kim is a seasoned consultant specializing in digital marketing and brand strategy. With over a decade of experience, she helps startups and established businesses build a strong online presence and connect with their target audience. Noelle is passionate about leveraging data-driven insights to create impactful and sustainable growth strategies.",
+            image: "https://via.placeholder.com/250",
+            availability: ["2025-09-22", "2025-09-23", "2025-09-24", "2025-09-25", "2025-09-26"]
+        },
+        maxwell: {
+            name: "Maxwell Brian",
+            bio: "Maxwell Brian is a highly-rated personal trainer and wellness coach dedicated to helping clients achieve their fitness goals. With a focus on holistic well-being, Maxwell provides personalized workout plans, nutritional advice, and motivational support. His approach emphasizes long-term health and sustainable habits.",
+            image: "https://via.placeholder.com/250",
+            availability: ["2025-09-29", "2025-09-30", "2025-10-01", "2025-10-02"]
+        },
+        giles: {
+            name: "Giles Kamgang",
+            bio: "Giles Kamgang is a licensed therapist specializing in cognitive-behavioral therapy (CBT) and stress management. He offers a supportive and confidential environment for clients to navigate life's challenges. Giles is committed to empowering individuals with practical tools to improve their mental health and emotional resilience.",
+            image: "https://via.placeholder.com/250",
+            availability: ["2025-10-06", "2025-10-07", "2025-10-08", "2025-10-09"]
+        }
+    };
+    const timeSlots = ["09:00", "10:30", "13:00", "14:30", "16:00"];
+    
+    let selectedProfile = profiles.noelle;
+    let selectedDate = null;
+    let selectedTime = null;
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const profileButtons = document.querySelectorAll('.profile-button');
+    const aboutSections = document.querySelectorAll('.about-content');
+    const bookBtn = document.getElementById('book-btn');
+    const datePicker = document.getElementById('date-picker');
+    const calendarDays = document.getElementById('calendar-days');
+    const timeSlotsSection = document.getElementById('time-slots');
+    const timeSlotsGrid = document.getElementById('time-slots-grid');
+    const bookingModal = document.getElementById('booking-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const bookingForm = document.getElementById('booking-form');
+    const currentYearSpan = document.getElementById('current-year');
+
+    // Smooth Scrolling
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Profile Switching
+    profileButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            profileButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            aboutSections.forEach(section => section.classList.remove('active'));
+            document.getElementById(`${button.dataset.profile}-profile`).classList.add('active');
+            selectedProfile = profiles[button.dataset.profile];
+            resetBooking();
+        });
+    });
+
+    // Booking Process
+    bookBtn.addEventListener('click', () => {
+        datePicker.classList.add('active');
+        populateCalendar();
+    });
+
+    function populateCalendar() {
+        calendarDays.innerHTML = '';
+        const today = new Date();
+        const futureDates = 30;
+        for (let i = 0; i < futureDates; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+            const dateString = date.toISOString().split('T')[0];
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('day');
+            if (!selectedProfile.availability.includes(dateString)) {
+                dayDiv.classList.add('unavailable');
+            }
+            dayDiv.textContent = `${date.getDate()} ${date.toLocaleString('en-US', { month: 'short' })}`;
+            dayDiv.dataset.date = dateString;
+            dayDiv.addEventListener('click', () => {
+                if (!dayDiv.classList.contains('unavailable')) {
+                    document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+                    dayDiv.classList.add('selected');
+                    selectedDate = dayDiv.dataset.date;
+                    populateTimeSlots();
+                }
+            });
+            calendarDays.appendChild(dayDiv);
+        }
+    }
+
+    function populateTimeSlots() {
+        timeSlotsSection.classList.add('active');
+        timeSlotsGrid.innerHTML = '';
+        timeSlots.forEach(slot => {
+            const timeDiv = document.createElement('div');
+            timeDiv.classList.add('time-slot');
+            timeDiv.textContent = slot;
+            timeDiv.dataset.time = slot;
+            timeDiv.addEventListener('click', () => {
+                document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+                timeDiv.classList.add('selected');
+                selectedTime = timeDiv.dataset.time;
+                bookingModal.style.display = 'flex';
+            });
+            timeSlotsGrid.appendChild(timeDiv);
+        });
+    }
+
+    // Modal and Form
+    closeBtn.addEventListener('click', () => {
+        bookingModal.style.display = 'none';
+        resetBooking();
+    });
+
+    window.addEventListener('click', e => {
+        if (e.target === bookingModal) {
+            bookingModal.style.display = 'none';
+            resetBooking();
+        }
+    });
+
+    bookingForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('booking-name').value;
+        const email = document.getElementById('booking-email').value;
+        const message = document.getElementById('booking-message').value;
+
+        // This is where a real backend API call would happen
+        // For demonstration, we just simulate success.
+        alert(`Success! Your appointment with ${selectedProfile.name} on ${selectedDate} at ${selectedTime} has been booked. Confirmation details will be sent to ${email}.`);
+        
+        bookingModal.style.display = 'none';
+        bookingForm.reset();
+        resetBooking();
+    });
+
+    function resetBooking() {
+        datePicker.classList.remove('active');
+        timeSlotsSection.classList.remove('active');
+        selectedDate = null;
+        selectedTime = null;
+    }
+    
+    // Set current year
+    currentYearSpan.textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>

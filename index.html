@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Booking | Max Brian, Noelle Kim, Giles Kamgang</title>
+    <title>Professional Booking | Noelle Kim, Maxwell Brian, Giles Kamgang</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -181,8 +181,9 @@
         }
         
         .profile-image {
-            width: 250px;
-            height: 250px;
+            width: 250px; /* Fixed width for consistency */
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensures images cover the area without distortion */
             border-radius: 50%;
             border: 5px solid #e9ecef;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -366,9 +367,64 @@
             margin-top: 50px;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            animation: fadeInModal 0.3s ease-out;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideInTop 0.4s ease-out;
+        }
+
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -412,7 +468,7 @@
                 <button class="profile-button" data-profile="giles">Giles Kamgang</button>
             </div>
             <div id="noelle-profile" class="about-content active">
-                <img src="https://via.placeholder.com/250" alt="Noelle Kim" class="profile-image">
+                <img src="https://via.placeholder.com/250/cccccc/ffffff?text=Noelle+Kim" alt="Noelle Kim" class="profile-image">
                 <div class="about-text">
                     <p>
                         Noelle Kim is a seasoned consultant specializing in digital marketing and brand strategy. With over a decade of experience, she helps startups and established businesses build a strong online presence and connect with their target audience. Noelle is passionate about leveraging data-driven insights to create impactful and sustainable growth strategies.
@@ -420,7 +476,7 @@
                 </div>
             </div>
             <div id="maxwell-profile" class="about-content">
-                <img src="https://via.placeholder.com/250" alt="Maxwell Brian" class="profile-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Image_1.jpg/535px-Image_1.jpg" alt="Maxwell Brian" class="profile-image" style="width: 535px; height: 891px;">
                 <div class="about-text">
                     <p>
                         Maxwell Brian is a highly-rated personal trainer and wellness coach dedicated to helping clients achieve their fitness goals. With a focus on holistic well-being, Maxwell provides personalized workout plans, nutritional advice, and motivational support. His approach emphasizes long-term health and sustainable habits.
@@ -428,7 +484,7 @@
                 </div>
             </div>
             <div id="giles-profile" class="about-content">
-                <img src="https://via.placeholder.com/250" alt="Giles Kamgang" class="profile-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Image_2.jpg/614px-Image_2.jpg" alt="Giles Kamgang" class="profile-image" style="width: 614px; height: 601px;">
                 <div class="about-text">
                     <p>
                         Giles Kamgang is a licensed therapist specializing in cognitive-behavioral therapy (CBT) and stress management. He offers a supportive and confidential environment for clients to navigate life's challenges. Giles is committed to empowering individuals with practical tools to improve their mental health and emotional resilience.
@@ -507,25 +563,25 @@ document.addEventListener('DOMContentLoaded', function() {
         noelle: {
             name: "Noelle Kim",
             bio: "Noelle Kim is a seasoned consultant specializing in digital marketing and brand strategy. With over a decade of experience, she helps startups and established businesses build a strong online presence and connect with their target audience. Noelle is passionate about leveraging data-driven insights to create impactful and sustainable growth strategies.",
-            image: "https://via.placeholder.com/250",
+            image: "https://via.placeholder.com/250/cccccc/ffffff?text=Noelle+Kim", // Placeholder for Noelle
             availability: ["2025-09-22", "2025-09-23", "2025-09-24", "2025-09-25", "2025-09-26"]
         },
         maxwell: {
             name: "Maxwell Brian",
             bio: "Maxwell Brian is a highly-rated personal trainer and wellness coach dedicated to helping clients achieve their fitness goals. With a focus on holistic well-being, Maxwell provides personalized workout plans, nutritional advice, and motivational support. His approach emphasizes long-term health and sustainable habits.",
-            image: "https://via.placeholder.com/250",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Image_1.jpg/535px-Image_1.jpg", // Image 1 for Maxwell
             availability: ["2025-09-29", "2025-09-30", "2025-10-01", "2025-10-02"]
         },
         giles: {
             name: "Giles Kamgang",
             bio: "Giles Kamgang is a licensed therapist specializing in cognitive-behavioral therapy (CBT) and stress management. He offers a supportive and confidential environment for clients to navigate life's challenges. Giles is committed to empowering individuals with practical tools to improve their mental health and emotional resilience.",
-            image: "https://via.placeholder.com/250",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Image_2.jpg/614px-Image_2.jpg", // Image 2 for Giles (Freedy)
             availability: ["2025-10-06", "2025-10-07", "2025-10-08", "2025-10-09"]
         }
     };
     const timeSlots = ["09:00", "10:30", "13:00", "14:30", "16:00"];
     
-    let selectedProfile = profiles.noelle;
+    let selectedProfile = profiles.noelle; // Default to Noelle
     let selectedDate = null;
     let selectedTime = null;
 
@@ -555,10 +611,20 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             profileButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            
+            // Hide all profile contents
             aboutSections.forEach(section => section.classList.remove('active'));
-            document.getElementById(`${button.dataset.profile}-profile`).classList.add('active');
+            
+            // Show the selected profile content
+            const targetProfileId = `${button.dataset.profile}-profile`;
+            const targetProfileContent = document.getElementById(targetProfileId);
+            if (targetProfileContent) {
+                targetProfileContent.classList.add('active');
+            }
+
+            // Update selected profile data for booking
             selectedProfile = profiles[button.dataset.profile];
-            resetBooking();
+            resetBooking(); // Reset booking state when changing profile
         });
     });
 
@@ -571,16 +637,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateCalendar() {
         calendarDays.innerHTML = '';
         const today = new Date();
-        const futureDates = 30;
+        const futureDates = 30; // Show 30 days into the future
         for (let i = 0; i < futureDates; i++) {
             const date = new Date(today);
             date.setDate(today.getDate() + i);
             const dateString = date.toISOString().split('T')[0];
             const dayDiv = document.createElement('div');
             dayDiv.classList.add('day');
+            
+            // Check if the selected professional is available on this date
             if (!selectedProfile.availability.includes(dateString)) {
                 dayDiv.classList.add('unavailable');
             }
+            
             dayDiv.textContent = `${date.getDate()} ${date.toLocaleString('en-US', { month: 'short' })}`;
             dayDiv.dataset.date = dateString;
             dayDiv.addEventListener('click', () => {
@@ -607,7 +676,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
                 timeDiv.classList.add('selected');
                 selectedTime = timeDiv.dataset.time;
-                bookingModal.style.display = 'flex';
+                bookingModal.style.display = 'flex'; // Show the modal after selecting time
             });
             timeSlotsGrid.appendChild(timeDiv);
         });
@@ -632,9 +701,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('booking-email').value;
         const message = document.getElementById('booking-message').value;
 
-        // This is where a real backend API call would happen
+        // --- SIMULATED BACKEND CALL ---
+        // In a real application, this would send data to a server.
         // For demonstration, we just simulate success.
-        alert(`Success! Your appointment with ${selectedProfile.name} on ${selectedDate} at ${selectedTime} has been booked. Confirmation details will be sent to ${email}.`);
+        alert(`Success! Your appointment with ${selectedProfile.name} on ${selectedDate} at ${selectedTime} has been booked.\nDetails:\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\nA confirmation will be sent to your email (simulated).`);
         
         bookingModal.style.display = 'none';
         bookingForm.reset();
@@ -644,12 +714,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetBooking() {
         datePicker.classList.remove('active');
         timeSlotsSection.classList.remove('active');
+        document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+        document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
         selectedDate = null;
         selectedTime = null;
     }
     
-    // Set current year
+    // Set current year in footer
     currentYearSpan.textContent = new Date().getFullYear();
+
+    // Initial load: ensure Noelle's profile is active and calendar is ready if booking is clicked
+    // This is handled by default via initial 'active' classes and default selectedProfile.
 });
 </script>
 </body>
